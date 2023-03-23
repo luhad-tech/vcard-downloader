@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/jlusby', (req, res) => {
-  res.download('./cards/joy_lusby.vcf')
+  res.download('/cards/joy_lusby.vcf')
 })
 
 app.listen(port, () => {
