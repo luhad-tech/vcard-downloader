@@ -7,8 +7,11 @@ app.get('/', (req, res) => {
   res.redirect('https://luhad.tech')
 })
 
-app.get('/jlusby', (req, res) => {
-  res.download('/cards/joy_lusby.vcf')
+app.get('/:org/:person', function (req, res) {
+    const org = req.params.org
+    const person = req.params.person
+    
+    res.download(`./cards/${org}/${person}.vcf`)
 })
 
 app.listen(port, () => {
