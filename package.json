@@ -1,13 +1,16 @@
 {
   "name": "vcard-downloader",
-  "version": "1.0.0",
-  "description": "Simple vcf file downloader",
+  "version": "1.0.0-beta",
+  "description": "Less simple vcf file downloader",
   "main": "index.js",
-  "repository": "git@github.com:Exehad/vcard-downloader.git",
-  "author": "Exehad <exehad701@gmail.com>",
+  "repository": "git@github.com:luhad-tech/vcard-downloader.git",
+  "author": "Hayden <hayden@luhad.tech>",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "express": "^4.18.2"
+    "discord.js": "^14.9.0",
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
+    "uuid": "^9.0.0"
   }
 }
