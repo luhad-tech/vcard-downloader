@@ -39,7 +39,7 @@ async function cardMaker(d) {
     vCard.workAddress.countryRegion = d.w_address.country;
   } 
   if (d.h_address.street != null) {
-    vCard.homeAddress.label = 'Work Address';
+    vCard.homeAddress.label = 'Home Address';
     vCard.homeAddress.street = d.h_address.street;
     vCard.homeAddress.city = d.h_address.city;
     vCard.homeAddress.stateProvince = d.h_address.state;
