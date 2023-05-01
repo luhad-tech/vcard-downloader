@@ -79,7 +79,6 @@ async function cardMaker(d) {
 app.get('/:id', (req, res, next) => {
   const id = req.params.id
   const val = [id]
-  let fileID;
   if (!uuid.validate(id)) {
     next()
   } else {
@@ -97,19 +96,16 @@ app.get('/:id', (req, res, next) => {
 
 app.get('*', function (req, res) {
     const path = req.path
-    const val = ['/'+ path]
-    console.log(path)
+    const val = [path]
 
-    res.download(`./cards${path}.vcf`, function (err) {
-      if (err) {
-        // Handle error, but keep in mind the response may be partially-sent
-        // so check res.headersSent
-        console.log('some error occurred. But I am too lazy to implement error handling :) sue me.')
-      } else {
-        // decrement a download credit, etc.
-        console.log(res.headersSent)
-      }
-    })
+    pool
+  .query(queryTextAlias, val)
+  .then(async (r) => {
+    res.set('Content-Type', `text/vcard; name="${r.rows[0].firstname}_${r.rows[0].lastname}.vcf"`);
+    res.set('Content-Disposition', `inline; filename="${r.rows[0].firstname}_${r.rows[0].lastname}.vcf"`);
+    res.send(await cardMaker(r.rows[0]))
+  })
+  .catch(e => console.error(e.stack))
 })
 
 app.listen(port, () => {
