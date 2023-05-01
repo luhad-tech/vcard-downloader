@@ -970,10 +970,10 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vcard-generator@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/vcard-generator/-/vcard-generator-0.0.7.tgz#1f31f2e6ba7327a9e5b632fd4a89fce68bb1dbef"
-  integrity sha512-5fKJYpRzfIiESJAobGNAQCOOHpJTccMB7tURa0ENzVL57F3jZVuzDs6zKYyTbVFYno/CR31i8MUnMB/nKH9F/A==
+vcards-js@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/vcards-js/-/vcards-js-2.10.0.tgz#70871c3c6f1f154ae0b4925d761bfe7ac2c8502a"
+  integrity sha512-nah+xbVInVJaO6+C5PEUqaougmv8BN8aa7ZCtmVQcX6eWIZGRukckFtseXSI7KD7/nXtwkJe624y42T0r+L+AQ==
 
 void-elements@^3.1.0:
   version "3.1.0"
