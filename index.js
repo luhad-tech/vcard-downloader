@@ -10,8 +10,8 @@ app.set('view engine', 'pug')
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 const connectionString = `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?sslmode=require`
-const queryTextUUID = 'SELECT * FROM public.vcf_data WHERE UUID = $1'
-const queryTextAlias = 'SELECT * FROM public.vcf_data WHERE alias = $1'
+const queryTextUUID = 'SELECT * FROM public.vcf_cards WHERE UUID = $1'
+const queryTextAlias = 'SELECT * FROM public.vcf_cards WHERE alias = $1'
 const pool = new Pool({
   connectionString,
 })
@@ -24,11 +24,65 @@ async function cardMaker(d) {
   if (d.middlename != null) {
     vCard.middleName = d.middlename;
   }
+  if (d.organization != null) {
+    vCard.organization = d.organization
+  }
+  if (d.photo != null) {
+    vCard.photo.attachFromUrl(d.photo, 'JPEG')
+  }
+  if (d.w_phone[0] != null) {
+    vCard.workPhone = d.w_phone
+  }
+  if (d.title != null) {
+    vCard.title = d.title
+  }
+  if (d.url != null) {
+    vCard.url = d.url
+  }
+  if (d.workurl != null) {
+    vCard.workUrl = d.workurl
+  }
+  if (d.note != null) {
+    vCard.note = d.note
+  }
+  if (d.nickname != null) {
+    vCard.nickname = d.nickname
+  }
   if (d.prefix != null) {
-    vCard.namePrefix = d.prefix;
+    vCard.namePrefix = d.prefix
   }
   if (d.suffix != null) {
-    vCard.nameSuffix = d.suffix;
+    vCard.nameSuffix = d.suffix
+  }
+  if (d.gender != null) {
+    vCard.gender = d.gender
+  }
+  if (d.role != null) {
+    vCard.role = d.role
+  }
+  if (d.h_phone[0] != null) {
+    vCard.homePhone = d.h_phone
+  }
+  if (d.c_phone[0] != null) {
+    vCard.cellPhone = d.c_phone
+  }
+  if (d.p_phone[0] != null) {
+    vCard.pagerPhone = d.p_phone
+  }
+  if (d.h_fax[0] != null) {
+    vCard.homeFax = d.h_fax
+  }
+  if (d.w_fax[0] != null) {
+    vCard.workFax = d.w_fax
+  }
+  if (d.h_email[0] != null) {
+    vCard.email = d.h_email
+  }
+  if (d.w_email[0] != null) {
+    vCard.workEmail = d.w_email
+  }
+  if (d.logo != null) {
+    vCard.logo.attachFromUrl(d.logo, 'JPEG')
   }
   if (d.w_address.street != null) {
     vCard.workAddress.label = 'Work Address';
@@ -45,31 +99,6 @@ async function cardMaker(d) {
     vCard.homeAddress.stateProvince = d.h_address.state;
     vCard.homeAddress.postalCode = d.h_address.code;
     vCard.homeAddress.countryRegion = d.h_address.country;
-  }  
-  if (d.birthday[0] != null) {
-    // year month day
-    vCard.birthday = new Date(d.birthday[0], d.birthday[1], d.birthday[2]);
-  }  
-  if (d.org != null) {
-    vCard.organization = d.org;
-  }  
-  if (d.w_email != null) {
-    vCard.workEmail = d.w_email;
-  }  
-  if (d.h_email != null) {
-    vCard.email = d.h_email;
-  }  
-  if (d.title != null) {
-    vCard.title = d.title;
-  }  
-  if (d.role != null) {
-    vCard.role = d.role;
-  }  
-  if (d.w_phone != null) {
-    vCard.workPhone = d.w_phone;
-  }  
-  if (d.h_phone != null) {
-    vCard.cellPhone = d.h_phone;
   }  
   return vCard.getFormattedString()
 }
