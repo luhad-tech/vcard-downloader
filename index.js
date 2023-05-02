@@ -28,7 +28,7 @@ async function cardMaker(d) {
     vCard.organization = d.organization
   }
   if (d.photo != null) {
-    vCard.photo.attachFromUrl(d.photo, 'JPEG')
+    vCard.photo.embedFromString(d.photo, 'image/png');
   }
   if (d.w_phone[0] != null) {
     vCard.workPhone = d.w_phone
@@ -80,9 +80,6 @@ async function cardMaker(d) {
   }
   if (d.w_email[0] != null) {
     vCard.workEmail = d.w_email
-  }
-  if (d.logo != null) {
-    vCard.logo.attachFromUrl(d.logo, 'JPEG')
   }
   if (d.w_address.street != null) {
     vCard.workAddress.label = 'Work Address';
