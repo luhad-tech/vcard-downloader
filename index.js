@@ -1,11 +1,12 @@
+// Initialize all needed frameworks
 const express = require('express')
 const uuid = require('uuid');
 const vCardsJS = require('vcards-js');
+const { Pool } = require('pg')
+require('dotenv').config();
 
 const app = express()
 const port = 3000
-const { Pool } = require('pg')
-require('dotenv').config();
 app.set('view engine', 'pug')
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
